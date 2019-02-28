@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# pdf
+PDFTEST.pdf
+
 # misc
 .DS_Store
 .env.local

@@ -5,6 +5,7 @@ import React from 'react';
 import './style.css';
 import QuestionComponent from './QuestionComponent';
 import questionsData from './questionsData'; //Array of objects containing each of the MBTI questions and responses.
+import testResults from  './testResults'; //Array of objects containing the result literature for each of the 16 personality types.
 let count = 1;
 
 
@@ -12,6 +13,7 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
+            allResults: testResults,
             allQuestions: questionsData, //Put questionsData in state
             personalityType: '',
             count: count
@@ -30,7 +32,6 @@ class App extends React.Component {
                 if (item.id === parseInt(id, 10)) { //e.target.id is a string, so parse to an integer and if it equals the current item's id as they're being mapped over update the allQuestions.choice property with e.target.value
 
                     item.choice = value -50; //e.target.value will be between 0 and 100 so subtract 50 to get allQuestions.choice of between -50 and 50
-                    console.log(item.choice)
                     return item;
                 }
                 return item; //else return unchanged item.
@@ -83,18 +84,17 @@ class App extends React.Component {
     }
 
     updateCount() {
-        count = (count + 1) % 2;
+        count = (count + 1) % 2; //Count alternates between 1 and 2 to conditionally style components as visible or not
     }
 
     render() {
-
         const questionsRendered = this.state.allQuestions.map((i) => <QuestionComponent key={i.id} item={i} sliding={this.handleChange}/>) //Create an array of components based on the array of questions (saved in state) passing the bound event handler method as a prop and passing each object as a prop which will be drilled into from the component side.
-
         return(
             <form>
                 <div style={{display: this.state.count === 0 ? 'none' : 'block'}}>{questionsRendered}<button onClick={this.handleSubmit}>Calculate My Personality Type</button></div>
 
-                <div>{this.state.personalityType}
+                <div style={{display: this.state.count === 1 ? 'none' : 'block'}}>
+                    {this.state.personalityType} {this.state.allResults[0].title}
                     <button style={{display: this.state.count === 1 ? 'none' : 'block'}} onClick={this.updateCount}>Take Test Again</button>
                 </div>
             </form>
