@@ -5,9 +5,8 @@ import React from 'react';
 import './style.css';
 import QuestionComponent from './QuestionComponent';
 import questionsData from './questionsData'; //Array of objects containing each of the MBTI questions and responses.
-import testResults from  './testResults'; //Array of objects containing the result literature for each of the 16 personality types.
+import testResults from './testResults'; //Array of objects containing the result literature for each of the 16 personality types.
 let count = 1;
-
 
 class App extends React.Component {
     constructor() {
@@ -73,14 +72,12 @@ class App extends React.Component {
         tf = tF <= 0 ? 'T' : 'F';
         jp = jP <= 0 ? 'J' : 'P';
 
-
         count = (count + 1) % 2;
 
         this.setState({
             personalityType: `${ei}${sn}${tf}${jp}`,
             count: count
         })
-
     }
 
     updateCount() {
@@ -88,6 +85,8 @@ class App extends React.Component {
     }
 
     render() {
+
+        console.log(this.state.allResults)
         const questionsRendered = this.state.allQuestions.map((i) => <QuestionComponent key={i.id} item={i} sliding={this.handleChange}/>) //Create an array of components based on the array of questions (saved in state) passing the bound event handler method as a prop and passing each object as a prop which will be drilled into from the component side.
         return(
             <form>

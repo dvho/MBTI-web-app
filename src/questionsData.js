@@ -371,7 +371,7 @@ const questionsData = [ //choice initialized at 0 for each index
         id: 47,
         category: 'TF',
         question: 'In myself I value more that I am:',
-        answerA: 'Unwvering',
+        answerA: 'Unwavering',
         answerB: 'Devoted',
         choice: 0
     },
