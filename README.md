@@ -1,5 +1,5 @@
 # Fluid-Choice Myers-Briggs Type Indicator (MBTI)
-This project demonstrates React in a gamut of use cases. The Fluid-Choice _Myers-Briggs Type Indicator_ is my modern adaptation of the original Forced-Choice _Myers-Briggs Type Indicator_. It features the ability to answer questions "fluidly" within a continuous range rather than starkly between two forced choices, as in the original. 
+This project demonstrates React in a gamut of use cases. The Fluid-Choice _Myers-Briggs Type Indicator_ is my modern adaptation of the iconic Forced-Choice _Myers-Briggs Type Indicator_ used ubiquitously throughout the world. My adaptation features the ability to answer questions "fluidly" within a continuous range between 0-100 rather than starkly between two forced choices, as in the original.
 
 _________________________
 
@@ -12,15 +12,15 @@ _________________________
 #### Features
 - React
 - Flexbox
-- A more accurate way to score the _Myers-Briggs Type Indicator_ test
+- 50 times more accurate approach to scoring the _Myers-Briggs Type Indicator_ exam
 _________________________
 
 #### Motivation
-In designing this modern version of the Myers–Briggs Type Indicator test I was able to make great use of React, mapping through questions and answer ranges in JSON format, passing props to and rendering raw object data into reusable components and implementing the ability to update state in realtime.
+In designing this modern version of the Myers–Briggs Type Indicator exam I was able to make great use of React, mapping through questions and answer ranges in JSON format, passing props to and rendering raw object data into reusable components and implementing the ability to update state in realtime.
 _________________________
 
 #### Notes
-Completing the test should only take 15 minutes or so. There are no right answers to any of these questions.
+Completing the exam should only take 15 minutes or so. There are no right answers to any of these questions.
 _________________________
 
 #### License
