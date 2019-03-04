@@ -149,8 +149,8 @@ button:hover {
 
 @keyframes animate-question {
     0% {transform: translateX(0px);}
-    21% {transform: translateX(33px);}
-    28% {transform: translateX(50px);}
+    21% {transform: translateX(-35px);}
+    28% {transform: translateX(40px);}
     37% {transform: translateX(-25px);}
     50% {transform: translateX(12px);}
     66% {transform: translateX(-6px);}
