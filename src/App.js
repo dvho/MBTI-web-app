@@ -3,18 +3,20 @@
 
 import React from 'react';
 import './style.css';
-import QuestionComponent from './QuestionComponent';
+import QuestionComponent from './components/QuestionComponent';
+import ArticleComponent from './components/ArticleComponent';
 import questionsData from './questionsData'; //Array of objects containing each of the MBTI questions and responses.
-import testResults from './testResults'; //Array of objects containing the result literature for each of the 16 personality types.
-let count = 1;
+import allArticles from './allArticles'; //Array of objects containing the result literature for each of the 16 personality types.
+let count = 1; //Initialize count
+let article = {} //Initialize article as empty object
 
 class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            allResults: testResults,
+            allResults: allArticles, //Put allArticles in state
             allQuestions: questionsData, //Put questionsData in state
-            personalityType: '',
+            personalityArticle: allArticles[0], //Initialize personalityArticle as ANY of the 16 articles (i.e. not as an empty object) so that .map() in ArticleComponent doesn't try to map something undefined while set as visiblity none.
             count: count
         }
         this.handleChange = this.handleChange.bind(this); //Bind event handler to the constructor
@@ -52,7 +54,7 @@ class App extends React.Component {
         let tf = 't'; //Initialize types
         let jp = 'j' //Initialize types
 
-        for (i = 0; i < this.state.allQuestions.length; i++) {
+        for (i = 0; i < this.state.allQuestions.length; i++) { //For each of the questions identify their category and score accordingly
             if (this.state.allQuestions[i].category === 'EI') {
                 eI += this.state.allQuestions[i].choice;
             }
@@ -67,33 +69,38 @@ class App extends React.Component {
             }
         }
 
-        ei = eI <= 0 ? 'E' : 'I';
+        ei = eI <= 0 ? 'E' : 'I'; //Choose the dominant letter for each category according to category score
         sn = sN <= 0 ? 'S' : 'N';
         tf = tF <= 0 ? 'T' : 'F';
         jp = jP <= 0 ? 'J' : 'P';
 
-        count = (count + 1) % 2;
+        count = (count + 1) % 2; //Toggle count between 1 and 2 to conditionally style components as visible or not (though this breaks the DRY principle, better to be done both within handleSubmit and as this.state.updateCount since functions within state can't call eachother)
 
-        this.setState({
-            personalityType: `${ei}${sn}${tf}${jp}`,
+        article = this.state.allResults.find(i => i.acronym === `${ei}${sn}${tf}${jp}`) //In the array of 16 articles in state find the article with the acronym property that matches the concatonation of the four letters
+
+        this.setState({ //Set personalityArticle and count in state
+            personalityArticle: article,
             count: count
-        })
+        });
+
+        window.scrollTo(0,0); //When submit is handled scroll to the top of "the new page." Because this is really the same page with visibility toggled, if this code isn't included in the submit handler the window will simply remain scrolled to the bottom of the page where it currently is (where the button is) when the button is clicked/submit is handled.
     }
 
     updateCount() {
-        count = (count + 1) % 2; //Count alternates between 1 and 2 to conditionally style components as visible or not
+        count = (count + 1) % 2; //Toggle count between 1 and 2 to conditionally style components as visible or not (though this breaks the DRY principle, better to be done both within handleSubmit and as this.state.updateCount since functions within state can't call each other)
     }
 
     render() {
 
-        console.log(this.state.allResults)
         const questionsRendered = this.state.allQuestions.map((i) => <QuestionComponent key={i.id} item={i} sliding={this.handleChange}/>) //Create an array of components based on the array of questions (saved in state) passing the bound event handler method as a prop and passing each object as a prop which will be drilled into from the component side.
         return(
-            <form>
+            <form id="whole-page">
                 <div style={{display: this.state.count === 0 ? 'none' : 'block'}}>{questionsRendered}<button onClick={this.handleSubmit}>Calculate My Personality Type</button></div>
 
                 <div style={{display: this.state.count === 1 ? 'none' : 'block'}}>
-                    {this.state.personalityType} {this.state.allResults[0].title}
+
+                    <ArticleComponent key={this.state.personalityArticle.id} article={this.state.personalityArticle}/>
+
                     <button style={{display: this.state.count === 1 ? 'none' : 'block'}} onClick={this.updateCount}>Take Test Again</button>
                 </div>
             </form>
