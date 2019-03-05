@@ -17,11 +17,21 @@ class App extends React.Component {
             allResults: allArticles, //Put allArticles in state
             allQuestions: questionsData, //Put questionsData in state
             personalityArticle: allArticles[0], //Initialize personalityArticle as ANY of the 16 articles (i.e. not as an empty object) so that .map() in ArticleComponent doesn't try to map something undefined while set as visiblity none.
-            count: count
+            count: count,
+            testComplete: undefined,
+            extroversion: 0,
+            introversion: 0,
+            sensing: 0,
+            intuition: 0,
+            thinking: 0,
+            feeling: 0,
+            judging: 0,
+            perceiving: 0
         }
         this.handleChange = this.handleChange.bind(this); //Bind event handler to the constructor
         this.handleSubmit = this.handleSubmit.bind(this); //Bind event handler to the constructor
         this.updateCount = this.updateCount.bind(this); //Bind event handler to the constructor
+        this.scroll = this.scroll.bind(this); //Bind event handler to the constructor
     }
 
     handleChange(e) {
@@ -43,16 +53,27 @@ class App extends React.Component {
     }
 
     handleSubmit(e) {
+
         e.preventDefault();
-        let i;
+
         let eI = 0; //Initialize eI value at 0
         let sN = 0; //Initialize sN value at 0
         let tF = 0; //Initialize tF value at 0
         let jP = 0; //Initialize jP value at 0
-        let ei = 'e'; //Initialize types
-        let sn = 's'; //Initialize types
-        let tf = 't'; //Initialize types
-        let jp = 'j' //Initialize types
+        let ei = 'X'; //Initialize types
+        let sn = 'X'; //Initialize types
+        let tf = 'X'; //Initialize types
+        let jp = 'X' //Initialize types
+        let extroversion = 0; //Initialize preferences
+        let introversion = 0; //Initialize preferences
+        let sensing = 0; //Initialize preferences
+        let intuition = 0; //Initialize preferences
+        let thinking = 0; //Initialize preferences
+        let feeling = 0; //Initialize preferences
+        let judging = 0; //Initialize preferences
+        let perceiving = 0; //Initialize preferences
+        let i; //Initialize iterator
+        let tempCompleteStatus = undefined; //Initialize tempCompleteStatus
 
         for (i = 0; i < this.state.allQuestions.length; i++) { //For each of the questions identify their category and score accordingly
             if (this.state.allQuestions[i].category === 'EI') {
@@ -69,21 +90,84 @@ class App extends React.Component {
             }
         }
 
-        ei = eI <= 0 ? 'E' : 'I'; //Choose the dominant letter for each category according to category score
-        sn = sN <= 0 ? 'S' : 'N';
-        tf = tF <= 0 ? 'T' : 'F';
-        jp = jP <= 0 ? 'J' : 'P';
+        if (eI === 0 || sN === 0 || tF === 0 || jP === 0) { //If any of the categories equal 0 testComplete in state changes from undefined to false (without calling this.setState?) and the words "Calculate My Personality Type" on the button in the render change to "Please Finish Answering Questions." Then the count is premptively toggled so when it passes through this if statement if toggles again and the net result is unchanged (i.e. we stay on the same "page")...
+            tempCompleteStatus = false;
+            count = (count + 1) % 2;
+        } else { //... else we can set it to true without premptively toggling count so when it does hit the count line we see the "new page" of the article.
+            tempCompleteStatus = true;
+        }
+
+        //Divide category totals by the number of questions in that category (eI has 9 instead of 10 because one question was obsolete) so that we have preferences on a -50 through 50 scale and can thereby calculate each of the 8 preferences as a percentage 0 - 100%
+        eI = eI/9;
+        sN = sN/20;
+        tF = tF/20;
+        jP = jP/20;
+
+        //Calculate the percentage inclination of each of the preferences and round to the tenths decimal place
+        if (eI < 0) {
+            ei = 'E';
+            extroversion = (Math.round((eI - 50) * -10)) / 10;
+            introversion = (100 - extroversion);
+            console.log('test this')
+        } else {
+            ei = 'I';
+            introversion = (Math.round((eI + 50) * 10)) / 10;
+            extroversion = (100 - introversion);
+        }
+        if (sN < 0) {
+            sn = 'S';
+            sensing = (Math.round((sN - 50) * -10)) / 10;
+            intuition = (100 - sensing);
+        } else {
+            sn = 'N';
+            intuition = (Math.round((sN + 50) * 10)) / 10;
+            sensing = (100 - intuition);
+        }
+        if (tF < 0) {
+            tf = 'T';
+            thinking = (Math.round((tF - 50) * -10)) / 10;
+            feeling = (100 - thinking);
+        } else {
+            tf = 'F';
+            feeling = (Math.round((tF + 50) * 10)) / 10;
+            thinking = (100 - feeling);
+        }
+        if (jP < 0) {
+            jp = 'J';
+            judging = (Math.round((jP - 50) * -10)) / 10;
+            perceiving = (100 - judging);
+        } else {
+            jp = 'P';
+            perceiving = (Math.round((jP + 50) * 10)) / 10;
+            judging = (100 - perceiving);
+        }
 
         count = (count + 1) % 2; //Toggle count between 1 and 2 to conditionally style components as visible or not (though this breaks the DRY principle, better to be done both within handleSubmit and as this.state.updateCount since functions within state can't call eachother)
 
         article = this.state.allResults.find(i => i.acronym === `${ei}${sn}${tf}${jp}`) //In the array of 16 articles in state find the article with the acronym property that matches the concatonation of the four letters
 
-        this.setState({ //Set personalityArticle and count in state
+        this.setState({ //Set personalityArticle,count, and the percent inclination for all 8 preferenes in state
             personalityArticle: article,
-            count: count
+            count: count,
+            extroversion: extroversion,
+            introversion: introversion,
+            sensing: sensing,
+            intuition: intuition,
+            thinking: thinking,
+            feeling: feeling,
+            judging: judging,
+            perceiving: perceiving,
+            testComplete: tempCompleteStatus
         });
 
-        window.scrollTo(0,0); //When submit is handled scroll to the top of "the new page." Because this is really the same page with visibility toggled, if this code isn't included in the submit handler the window will simply remain scrolled to the bottom of the page where it currently is (where the button is) when the button is clicked/submit is handled.
+        setTimeout(this.scroll, 0); //This is a workaround React's error that you should only set the state using the setState method. This allows state to update and captures the face that window.scrollTo(0,0) needs to happen after the setState's parent function has returned. Previously I'd tried setting testComplete in the earlier conditional statement that checks to make sure that each of eI, sN, tF and jP don't equal zero. This worked because by the time setState was run testComplete was already true and so window.scrollTo(0,0) would happen but, though it worked, React put an error in the console. Naturally, I made a temporary version of testComplete within the scope of handleSubmit later to be updated when setState was called to see if this would fix the console error, which it did, but then my window.scrollTo(0,0) line wasn't running on the condition that testComplete was true. Why? What I learned empirically is that in React the setState method doesn't actually update state until its parent function has returned, so setting testComplete in my setState method wasn't working to trigger window.scrollTo(0,0) because when it was hitting the window.scrollTo(0,0) line testComplete was still either undefined or false in state. What worked was of course allowing state to update with setState, binding a function containing window.scrollTo(0,0) to the constructor and calling it from a setTimeout after setState so that after setState's parent function had returned, i.e. after state was actually set, the scroll function would have the updated version of state and be able to scroll if {testComplete: true} or not scroll if {testComplete: undefined} or {testComplete: false}
+
+    }
+
+    scroll() {
+        if (this.state.testComplete === true) {
+            window.scrollTo(0,0); //When submit is handled scroll to the top of "the new page." Because this is really the same page with visibility toggled, if this code isn't included in the submit handler the window will simply remain scrolled to the bottom of the page where it currently is (where the button is) when the button is clicked/submit is handled.
+        }
     }
 
     updateCount() {
@@ -92,10 +176,17 @@ class App extends React.Component {
 
     render() {
 
+        console.log(`extroversion:${this.state.extroversion}% -- introversion:${this.state.introversion}%`);
+        console.log(`sensing:${this.state.sensing}% -- intuition:${this.state.intuition}%`);
+        console.log(`thinking:${this.state.thinking}% -- feeling:${this.state.feeling}%`);
+        console.log(`judging:${this.state.judging}% -- perceving:${this.state.perceiving}%`)
+
         const questionsRendered = this.state.allQuestions.map((i) => <QuestionComponent key={i.id} item={i} sliding={this.handleChange}/>) //Create an array of components based on the array of questions (saved in state) passing the bound event handler method as a prop and passing each object as a prop which will be drilled into from the component side.
         return(
             <form id="whole-page">
-                <div style={{display: this.state.count === 0 ? 'none' : 'block'}}>{questionsRendered}<button onClick={this.handleSubmit}>Calculate My Personality Type</button></div>
+                <div style={{display: this.state.count === 0 ? 'none' : 'block'}}>{questionsRendered}
+                    <button onClick={this.handleSubmit}>{this.state.testComplete === undefined ? 'Calculate My Personality Type' : 'Please Finish Answering Questions'}</button>
+                </div>
 
                 <div style={{display: this.state.count === 1 ? 'none' : 'block'}}>
 
