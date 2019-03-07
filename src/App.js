@@ -5,6 +5,7 @@ import React from 'react';
 import './style.css';
 import QuestionComponent from './components/QuestionComponent';
 import ArticleComponent from './components/ArticleComponent';
+import PreferencesGraph from './components/PreferencesGraph';
 import questionsData from './questionsData'; //Array of objects containing each of the MBTI questions and responses.
 import allArticles from './allArticles'; //Array of objects containing the result literature for each of the 16 personality types.
 let count = 1; //Initialize count
@@ -30,8 +31,9 @@ class App extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this); //Bind event handler to the constructor
         this.handleSubmit = this.handleSubmit.bind(this); //Bind event handler to the constructor
-        this.updateCount = this.updateCount.bind(this); //Bind event handler to the constructor
-        this.scroll = this.scroll.bind(this); //Bind event handler to the constructor
+        this.updateCount = this.updateCount.bind(this); //Bind updateCount function constructor
+        this.scroll = this.scroll.bind(this); //Bind scroll function to the constructor
+        this.resetPreferences = this.resetPreferences.bind(this); //Bind resetPreferences function to the constructor
     }
 
     handleChange(e) {
@@ -106,40 +108,39 @@ class App extends React.Component {
         //Calculate the percentage inclination of each of the preferences and round to the tenths decimal place
         if (eI < 0) {
             ei = 'E';
-            extroversion = (Math.round((eI - 50) * -10)) / 10;
-            introversion = (100 - extroversion);
-            console.log('test this')
+            extroversion = ((Math.round((eI - 50) * -10)) / 10).toFixed(1);
+            introversion = (100 - extroversion).toFixed(1);
         } else {
             ei = 'I';
-            introversion = (Math.round((eI + 50) * 10)) / 10;
-            extroversion = (100 - introversion);
+            introversion = ((Math.round((eI + 50) * 10)) / 10).toFixed(1);
+            extroversion = (100 - introversion).toFixed(1);
         }
         if (sN < 0) {
             sn = 'S';
-            sensing = (Math.round((sN - 50) * -10)) / 10;
-            intuition = (100 - sensing);
+            sensing = ((Math.round((sN - 50) * -10)) / 10).toFixed(1);
+            intuition = (100 - sensing).toFixed(1);
         } else {
             sn = 'N';
-            intuition = (Math.round((sN + 50) * 10)) / 10;
-            sensing = (100 - intuition);
+            intuition = ((Math.round((sN + 50) * 10)) / 10).toFixed(1);
+            sensing = (100 - intuition).toFixed(1);
         }
         if (tF < 0) {
             tf = 'T';
-            thinking = (Math.round((tF - 50) * -10)) / 10;
-            feeling = (100 - thinking);
+            thinking = ((Math.round((tF - 50) * -10)) / 10).toFixed(1);
+            feeling = (100 - thinking).toFixed(1);
         } else {
             tf = 'F';
-            feeling = (Math.round((tF + 50) * 10)) / 10;
-            thinking = (100 - feeling);
+            feeling = ((Math.round((tF + 50) * 10)) / 10).toFixed(1);
+            thinking = (100 - feeling).toFixed(1);
         }
         if (jP < 0) {
             jp = 'J';
-            judging = (Math.round((jP - 50) * -10)) / 10;
-            perceiving = (100 - judging);
+            judging = ((Math.round((jP - 50) * -10)) / 10).toFixed(1);
+            perceiving = (100 - judging).toFixed(1);
         } else {
             jp = 'P';
-            perceiving = (Math.round((jP + 50) * 10)) / 10;
-            judging = (100 - perceiving);
+            perceiving = ((Math.round((jP + 50) * 10)) / 10).toFixed(1);
+            judging = (100 - perceiving).toFixed(1);
         }
 
         count = (count + 1) % 2; //Toggle count between 1 and 2 to conditionally style components as visible or not (though this breaks the DRY principle, better to be done both within handleSubmit and as this.state.updateCount since functions within state can't call eachother)
@@ -174,16 +175,29 @@ class App extends React.Component {
         count = (count + 1) % 2; //Toggle count between 1 and 2 to conditionally style components as visible or not (though this breaks the DRY principle, better to be done both within handleSubmit and as this.state.updateCount since functions within state can't call each other)
     }
 
-    render() {
+    resetPreferences() { //If preferences aren't reset when "Take Test Again" button is clicked then we won't get the CSS height animations from height: 0.
+        this.setState ({
+            extroversion: 0,
+            introversion: 0,
+            sensing: 0,
+            intuition: 0,
+            thinking: 0,
+            feeling: 0,
+            judging: 0,
+            perceiving: 0
+        });
+    }
 
-        console.log(`extroversion:${this.state.extroversion}% -- introversion:${this.state.introversion}%`);
-        console.log(`sensing:${this.state.sensing}% -- intuition:${this.state.intuition}%`);
-        console.log(`thinking:${this.state.thinking}% -- feeling:${this.state.feeling}%`);
-        console.log(`judging:${this.state.judging}% -- perceving:${this.state.perceiving}%`)
+    render() {
 
         const questionsRendered = this.state.allQuestions.map((i) => <QuestionComponent key={i.id} item={i} sliding={this.handleChange}/>) //Create an array of components based on the array of questions (saved in state) passing the bound event handler method as a prop and passing each object as a prop which will be drilled into from the component side.
         return(
             <form id="whole-page">
+
+                <h1 style={{display: this.state.count === 1 ? 'none' : 'block'}} className='nickname'>"{this.state.personalityArticle.nickname}"</h1>
+
+                <div style={{visibility: this.state.count === 1 ? 'hidden' : 'visible'}}><PreferencesGraph state={this.state}/></div>
+
                 <div style={{display: this.state.count === 0 ? 'none' : 'block'}}>{questionsRendered}
                     <button onClick={this.handleSubmit}>{this.state.testComplete === undefined ? 'Calculate My Personality Type' : 'Please Finish Answering Questions'}</button>
                 </div>
@@ -192,8 +206,9 @@ class App extends React.Component {
 
                     <ArticleComponent key={this.state.personalityArticle.id} article={this.state.personalityArticle}/>
 
-                    <button style={{display: this.state.count === 1 ? 'none' : 'block'}} onClick={this.updateCount}>Take Test Again</button>
+                    <button style={{display: this.state.count === 1 ? 'none' : 'block'}} onClick={this.updateCount} onClick={this.resetPreferences}>Take Test Again</button>
                 </div>
+
             </form>
 
         )

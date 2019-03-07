@@ -4,6 +4,69 @@ body {
     background-color: hsla(60, 100%, 97%, .3); /*backround-color: Ivory (at .3 opacity)*/
 }
 
+.nickname {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.preferences-graph-container {
+    display: flex;
+    height: 314px;
+    align-items: flex-end;
+    justify-content: space-around;
+    background-color: hsla(60, 100%, 97%, 1);
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
+    text-align: center;
+    color: hsl(195 25% 35%);
+    font-size: 12px;
+}
+@media only screen and (max-width: 768px) {
+    .preferences-graph-container {
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width: 620px) {
+    .preferences-graph-container {
+        font-size: 9px;
+    }
+}
+@media only screen and (max-width: 520px) {
+    .preferences-graph-container {
+        font-size: 8px;
+    }
+}
+@media only screen and (max-width: 420px) {
+    .preferences-graph-container {
+        font-size: 7px;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .preferences-graph-container {
+        font-size: 6px;
+    }
+}
+.preferences-graph-container-box {
+    width: 11%;
+}
+.label {
+    padding-bottom: 1px;
+}
+.preference {
+    flex: 1;
+    padding-top: 5px;
+    transition: height 1s ease;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: 5px 2px 9px 0px rgba(0,0,0,0.75);
+    text-shadow: 0px 0px 12px rgba(255, 255, 240, 1);
+}
+.graph-bar-left {
+    background-color: hsl(359 25% 79%);
+}
+.graph-bar-right {
+    background-color: hsl(195 25% 79%);
+}
+
 .question-block {
     border: 1px solid hsl(195 25% 35%);
     z-index: 100;
@@ -20,13 +83,13 @@ body {
     padding-right: 10px;
 }
 
-.container-1 {
+.answer-container {
     display: flex;
     align-items: stretch;
     padding-bottom: 8px;
     margin-bottom: 5%;
 }
-.container-1 div {
+.answer-container div {
     padding: 5px;
     font-size: 16px;
     line-height: 1.2;
@@ -66,7 +129,7 @@ body {
     right: 3%;
     width: 100px;
 }
-.graphs {
+.answer-graphs {
     position: absolute;
     background-color: hsl(359 25% 79%);
     border-top-right-radius: 15px;

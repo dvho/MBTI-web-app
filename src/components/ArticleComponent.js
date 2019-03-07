@@ -28,8 +28,6 @@ function ArticleComponent(props) {
     return (
         <div>
 
-            <h1>"{props.article.nickname}"</h1>
-
             <h2>{props.article.title}</h2>
 
             {intro}
