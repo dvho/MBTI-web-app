@@ -1,5 +1,8 @@
 # Continuous-Choice Myers-Briggs Type Indicator (MBTI)
-This project demonstrates React in a gamut of use cases. The _Continuous-Choice Myers-Briggs Type Indicator_ is my modern adaptation of the iconic forced-choice _Myers-Briggs Type Indicator_ used ubiquitously throughout the world. The original forces the examinee to choose starkly between a pair of two extremes (referred to as "Forced-Choice" questioning), having caused a long history of unease in the examinee and inaccurate data. Moreover, many of the pairs are not logical opposites, further causing frustration. My updated version allows the examinee to indicate preferences more granularly by leaning toward one answer or the other within a range of 0-100 rather than choosing entirely between the two.
+This project demonstrates React in a gamut of use cases. The _Continuous-Choice Myers-Briggs Type Indicator_ is my modern adaptation of the iconic forced-choice _Myers-Briggs Type Indicator_ used ubiquitously throughout the world. The original forces the examinee to choose starkly between a pair of two extremes (referred to as "Forced-Choice" questioning), having caused a long history of unease and inaccurate data. Moreover, many of the pairs are not logical opposites, compounding frustration and inaccuracies. My updated version allows the indication of preferences with more granularity by leaning toward one answer or the other within a range of 0-100 rather than choosing entirely between the two.
+
+<img src="https://user-images.githubusercontent.com/45696445/54052025-3ffbe380-41b1-11e9-9afd-64292478fd12.gif">
+
 _________________________
 
 #### How to Use
@@ -11,15 +14,15 @@ _________________________
 #### Features
 - React
 - Flexbox
-- 50 times more accurate approach to scoring the _Myers-Briggs Type Indicator_ exam
+- 50 times more accurate approach to scoring the _Myers-Briggs Type Indicator_ exam (range of 0-100 vs range of 1-2)
 _________________________
 
 #### Motivation
-In designing this updated version of the Myers–Briggs Type Indicator exam I was able to make great use of React, mapping through arrays of object data to pass props to and render them into reusable components, implementing the ability to update state in realtime, conditional rendering, etc.
+In designing my updated version of the _Myers–Briggs Type Indicator_ exam I was able to make great use of React, mapping through arrays of object data to pass props to and render them into reusable components, implementing the ability to update state in realtime, conditional rendering, etc.
 _________________________
 
 #### Notes
-Completing the exam should only take 15 minutes or so. There are no right answers to any of these questions.
+Completing the exam should take no more than 15 minutes. There are no "right" answers to any of the questions.
 _________________________
 
 #### License
