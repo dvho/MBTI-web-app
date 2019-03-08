@@ -53,7 +53,6 @@ body {
 }
 .app-directions {
     line-height: 1.4;
-    margin-right: 4.5%;
     margin-bottom: 30px;
     list-style-position: inside;
     text-align: center;
@@ -78,7 +77,6 @@ body {
 .title {
     text-align: center;
 }
-
 h2, h3 {
     margin-top: 30px;
     margin-bottom: 0px;
@@ -100,7 +98,7 @@ ol li {
 .nickname {
     font-size: 48px;
     text-align: center;
-    margin-bottom: 10px;
+    line-height: 1;
 }
 .preferences-pairs {
     display: flex;
@@ -109,6 +107,7 @@ ol li {
     color: hsl(195 25% 35%);
     font-size: 24px;
     margin-top: 50px;
+    user-select: none;
 }
 .graph-heading {
     flex: 1;
@@ -124,6 +123,7 @@ ol li {
     text-align: center;
     color: hsl(195 25% 35%);
     font-size: 12px;
+    user-select: none;
 }
 @media only screen and (max-width: 768px) {
     .preferences-graph-container {
