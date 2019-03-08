@@ -3,7 +3,39 @@ body {
     font-family: "Times New Roman", Times, serif;
     background-color: hsla(60, 100%, 97%, .3); /*backround-color: Ivory (at .3 opacity)*/
 }
-
+.animate-opacity {
+    animation: animate .5s ease;
+}
+@keyframes animate {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+.app-title {
+    margin-top: -294px;
+    margin-left: 3%;
+    margin-right: 3%;
+    text-align: center;
+    color: hsl(195 25% 25%);
+}
+.app-intro {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    margin-left: 3%;
+    margin-right: 3%;
+    text-align: center;
+    color: hsl(195 25% 25%);
+    font-size: 20px;
+    line-height: 1.4;
+}
+.app-directions {
+    line-height: 1.4;
+    margin-right: 4.5%;
+    margin-bottom: 30px;
+    list-style-position: inside;
+    text-align: center;
+    color: hsl(195 25% 25%);
+    font-size: 24px;
+}
 .nickname {
     font-size: 48px;
     text-align: center;

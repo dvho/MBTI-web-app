@@ -2,7 +2,7 @@ const questionsData = [ //choice initialized at 0 for each index
     {
         id: 1,
         category: 'EI',
-        question: 'At a party I:',
+        question: 'At a social event I:',
         answerA: 'Interact with many people including strangers',
         answerB: 'Interact with a few people I know',
         choice: 0

@@ -1,11 +1,11 @@
-# Fluid-Choice Myers-Briggs Type Indicator (MBTI)
-This project demonstrates React in a gamut of use cases. The Fluid-Choice _Myers-Briggs Type Indicator_ is my modern adaptation of the iconic Forced-Choice _Myers-Briggs Type Indicator_ used ubiquitously throughout the world. My adaptation features the ability to answer questions "fluidly" within a continuous range between 0-100 rather than starkly between two forced choices, as in the original.
+# Continuous-Choice Myers-Briggs Type Indicator (MBTI)
+This project demonstrates React in a gamut of use cases. The Continuous-Choice _Myers-Briggs Type Indicator_ is my modern adaptation of the iconic Forced-Choice _Myers-Briggs Type Indicator_ used ubiquitously throughout the world. My adaptation features the ability to answer questions continuously within a range between 0-100 rather than starkly between two forced choices, as in the original.
 
 _________________________
 
 #### How to Use
 * Scroll through the questions and slide sliders left and right according to your preferences.
-* Do not over-analyze the questions, answer quickly and keep scrolling.
+* Do not over-analyze the questions. Answer quickly and honestly, and keep scrolling.
 * Answer questions “the way you are,” not “the way you’d like to be seen by others."
 _________________________
 
@@ -16,7 +16,7 @@ _________________________
 _________________________
 
 #### Motivation
-In designing this modern version of the Myers–Briggs Type Indicator exam I was able to make great use of React, mapping through questions and answer ranges in JSON format, passing props to and rendering raw object data into reusable components and implementing the ability to update state in realtime.
+In designing this updated version of the Myers–Briggs Type Indicator exam I was able to make great use of React, mapping through arrays of object data to pass props to and render them into reusable components, implementing the ability to update state in realtime, conditional rendering, etc.
 _________________________
 
 #### Notes

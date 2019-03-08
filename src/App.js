@@ -3,6 +3,7 @@
 
 import React from 'react';
 import './style.css';
+import IntroComponent from './components/IntroComponent';
 import QuestionComponent from './components/QuestionComponent';
 import ArticleComponent from './components/ArticleComponent';
 import PreferencesGraph from './components/PreferencesGraph';
@@ -176,6 +177,7 @@ class App extends React.Component {
     }
 
     resetPreferences() { //If preferences aren't reset when "Take Test Again" button is clicked then we won't get the CSS height animations from height: 0.
+        this.updateCount();
         this.setState ({
             extroversion: 0,
             introversion: 0,
@@ -192,11 +194,14 @@ class App extends React.Component {
 
         const questionsRendered = this.state.allQuestions.map((i) => <QuestionComponent key={i.id} item={i} sliding={this.handleChange}/>) //Create an array of components based on the array of questions (saved in state) passing the bound event handler method as a prop and passing each object as a prop which will be drilled into from the component side.
         return(
-            <form id="whole-page">
+            <form id="whole-page" className="animate-opacity">
 
                 <h1 style={{display: this.state.count === 1 ? 'none' : 'block'}} className='nickname'>"{this.state.personalityArticle.nickname}"</h1>
 
                 <div style={{visibility: this.state.count === 1 ? 'hidden' : 'visible'}}><PreferencesGraph state={this.state}/></div>
+
+                <div style={{display: this.state.count === 0 ? 'none' : 'block'}}><IntroComponent/>
+                </div>
 
                 <div style={{display: this.state.count === 0 ? 'none' : 'block'}}>{questionsRendered}
                     <button onClick={this.handleSubmit}>{this.state.testComplete === undefined ? 'Calculate My Personality Type' : 'Please Finish Answering Questions'}</button>
@@ -206,7 +211,7 @@ class App extends React.Component {
 
                     <ArticleComponent key={this.state.personalityArticle.id} article={this.state.personalityArticle}/>
 
-                    <button style={{display: this.state.count === 1 ? 'none' : 'block'}} onClick={this.updateCount} onClick={this.resetPreferences}>Take Test Again</button>
+                    <button style={{display: this.state.count === 1 ? 'none' : 'block'}} onClick={this.resetPreferences}>Take Test Again</button>
                 </div>
 
             </form>
