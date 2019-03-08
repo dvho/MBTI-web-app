@@ -9,7 +9,19 @@ body {
     text-align: center;
     margin-bottom: 10px;
 }
+.preferences-pairs {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: hsl(195 25% 35%);
+    font-size: 24px;
+    margin-top: 50px;
+}
+.graph-heading {
+    flex: 1;
+}
 .preferences-graph-container {
+    margin-top: -60px;
     display: flex;
     height: 314px;
     align-items: flex-end;
