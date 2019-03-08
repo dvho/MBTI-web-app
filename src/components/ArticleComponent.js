@@ -26,9 +26,9 @@ function ArticleComponent(props) {
     const tenRules = props.article.tenRules.map((i) => <OrderedListComponent key={i} li={i}/>);
 
     return (
-        <div>
+        <div className='article'>
 
-            <h2>{props.article.title}</h2>
+            <h2 className='title'>{props.article.title}</h2>
 
             {intro}
 
@@ -51,7 +51,7 @@ function ArticleComponent(props) {
 
             <div style={{display: props.article.relationshipsBlurb ? 'block' : 'none'}}>
 
-                <h3>{props.article.acronym} Relationships</h3>
+                <h3 class='h3-above-p-or-ol'>{props.article.acronym} Relationships</h3>
 
                 <p>{props.article.relationshipsBlurb}</p>
 
@@ -69,11 +69,11 @@ function ArticleComponent(props) {
                     {relationshipWeaknesses}
                 </ul>
 
-            <h3>What does Success mean to an {props.article.acronym}</h3>
+            <h3 class='h3-above-p-or-ol'>What does Success mean to an {props.article.acronym}</h3>
 
             {succeeding}
 
-            <h3>Allowing Your {props.article.acronym} Strengths to Flourish</h3>
+            <h3 class='h3-above-p-or-ol'>Allowing Your {props.article.acronym} Strengths to Flourish</h3>
 
             <p>{props.article.flourishing}</p>
 
@@ -87,7 +87,7 @@ function ArticleComponent(props) {
                 {gifts}
             </ul>
 
-            <h3>Potential Problem Areas</h3>
+            <h3 class='h3-above-p-or-ol'>Potential Problem Areas</h3>
 
             {problems}
 
@@ -97,19 +97,19 @@ function ArticleComponent(props) {
                 {weaknesses}
             </ul>
 
-            <h3>Explanation of Problems</h3>
+            <h3 class='h3-above-p-or-ol'>Explanation of Problems</h3>
             {problemsExplanation}
 
-            <h3>Solutions</h3>
+            <h3 class='h3-above-p-or-ol'>Solutions</h3>
             {solutions}
 
-            <h3>Living Happily in our World as an {props.article.acronym}</h3>
+            <h3 class='h3-above-p-or-ol'>Living Happily in our World as an {props.article.acronym}</h3>
             {livingHappily}
 
-            <h3>Specific Suggestions</h3>
+            <h3 class='h3-above-p-or-ol'>Specific Suggestions</h3>
             {suggestions}
 
-            <h3>Ten Rules to Live By to Achieve {props.article.acronym} Success</h3>
+            <h3 class='h3-above-p-or-ol'>Ten Rules to Live By to Achieve {props.article.acronym} Success</h3>
 
             <ol>
                 {tenRules}

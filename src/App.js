@@ -148,7 +148,7 @@ class App extends React.Component {
 
         article = this.state.allResults.find(i => i.acronym === `${ei}${sn}${tf}${jp}`) //In the array of 16 articles in state find the article with the acronym property that matches the concatonation of the four letters
 
-        this.setState({ //Set personalityArticle,count, and the percent inclination for all 8 preferenes in state
+        this.setState({ //Set personalityArticle, count, and the percent inclination for all 8 preferenes in state
             personalityArticle: article,
             count: count,
             extroversion: extroversion,
@@ -177,7 +177,7 @@ class App extends React.Component {
     }
 
     resetPreferences() { //If preferences aren't reset when "Take Test Again" button is clicked then we won't get the CSS height animations from height: 0.
-        this.updateCount();
+        this.updateCount(); //Also need to update count here since two functions can't be called seperately from the onClick handler in JSX
         this.setState ({
             extroversion: 0,
             introversion: 0,
@@ -194,11 +194,11 @@ class App extends React.Component {
 
         const questionsRendered = this.state.allQuestions.map((i) => <QuestionComponent key={i.id} item={i} sliding={this.handleChange}/>) //Create an array of components based on the array of questions (saved in state) passing the bound event handler method as a prop and passing each object as a prop which will be drilled into from the component side.
         return(
-            <form id="whole-page" className="animate-opacity">
+            <form id="whole-page">
 
-                <h1 style={{display: this.state.count === 1 ? 'none' : 'block'}} className='nickname'>"{this.state.personalityArticle.nickname}"</h1>
+                <h1 style={{display: this.state.count === 1 ? 'none' : 'block', animation: this.state.count === 1 ? 'none' : 'slideNicknameFromLeft 2s ease'}} className='article nickname'>"{this.state.personalityArticle.nickname}"</h1>
 
-                <div style={{visibility: this.state.count === 1 ? 'hidden' : 'visible'}}><PreferencesGraph state={this.state}/></div>
+                <div style={{opacity: this.state.count === 1 ? '0' : '1', animation: this.state.count === 1 ? 'none' : 'slidePreferencesGraphFromRight 2s ease'}}><PreferencesGraph state={this.state}/></div>
 
                 <div style={{display: this.state.count === 0 ? 'none' : 'block'}}><IntroComponent/>
                 </div>

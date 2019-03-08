@@ -3,12 +3,36 @@ body {
     font-family: "Times New Roman", Times, serif;
     background-color: hsla(60, 100%, 97%, .3); /*backround-color: Ivory (at .3 opacity)*/
 }
-.animate-opacity {
-    animation: animate .5s ease;
+@keyframes slideNicknameFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-500px);
+    }
+    25% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
-@keyframes animate {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
+@keyframes slidePreferencesGraphFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(500px);
+    }
+    25% {
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 1;
+    }
 }
 .app-title {
     margin-top: -294px;
@@ -35,6 +59,43 @@ body {
     text-align: center;
     color: hsl(195 25% 25%);
     font-size: 24px;
+}
+.article {
+    color: hsl(195 25% 25%);
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 1.4;
+    animation: fadeIn 3s ease;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.title {
+    text-align: center;
+}
+
+h2, h3 {
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+.h3-above-p-or-ol {
+    margin-bottom: -12px;
+}
+p {
+    margin-top: 16px;
+    margin-bottom: 0px;
+}
+ul {
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+ol li {
+    margin-top: 7px;
 }
 .nickname {
     font-size: 48px;
@@ -98,7 +159,7 @@ body {
 .preference {
     flex: 1;
     padding-top: 5px;
-    transition: height 1s ease;
+    transition: height 1s ease .5s;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     box-shadow: 5px 2px 9px 0px rgba(0,0,0,0.75);
