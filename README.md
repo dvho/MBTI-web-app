@@ -1,12 +1,11 @@
 # Continuous-Choice Myers-Briggs Type Indicator (MBTI)
-This project demonstrates React in a gamut of use cases. The Continuous-Choice _Myers-Briggs Type Indicator_ is my modern adaptation of the iconic Forced-Choice _Myers-Briggs Type Indicator_ used ubiquitously throughout the world. My adaptation features the ability to answer questions continuously within a range between 0-100 rather than starkly between two forced choices, as in the original.
-
+This project demonstrates React in a gamut of use cases. The _Continuous-Choice Myers-Briggs Type Indicator_ is my modern adaptation of the iconic forced-choice _Myers-Briggs Type Indicator_ used ubiquitously throughout the world. The original forces the examinee to choose starkly between a pair of two extremes (referred to as "Forced-Choice" questioning), having caused a long history of unease in the examinee and inaccurate data. Moreover, many of the pairs are not logical opposites, further causing frustration. My updated version allows the examinee to indicate preferences more granularly by leaning toward one answer or the other within a range of 0-100 rather than choosing entirely between the two.
 _________________________
 
 #### How to Use
 * Scroll through the questions and slide sliders left and right according to your preferences.
 * Do not over-analyze the questions. Answer quickly and honestly, and keep scrolling.
-* Answer questions “the way you are,” not “the way you’d like to be seen by others."
+* Answer questions the _way you are_ not the _way you’d like to be seen by others_
 _________________________
 
 #### Features
