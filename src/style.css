@@ -3,10 +3,66 @@ body {
     font-family: "Times New Roman", Times, serif;
     background-color: hsla(60, 100%, 97%, .3); /*backround-color: Ivory (at .3 opacity)*/
 }
+@keyframes slideAppTitleFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    50% {
+        transform: translateX(0px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes slideAppIntroFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    20% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    60% {
+        transform: translateX(0px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes slideAppDirectionsFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    40% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    70% {
+        transform: translateX(0px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeInQuestions {
+    0% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 @keyframes slideNicknameFromLeft {
     0% {
         opacity: 0;
-        transform: translateX(-500px);
+        transform: translateX(-50px);
     }
     25% {
         transform: translateX(0);
@@ -25,10 +81,19 @@ body {
 @keyframes slidePreferencesGraphFromRight {
     0% {
         opacity: 0;
-        transform: translateX(500px);
+        transform: translateX(50px);
     }
     25% {
         transform: translateX(0);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInArticle {
+    0% {
+        opacity: 0;
     }
     100% {
         opacity: 1;
@@ -40,6 +105,7 @@ body {
     margin-right: 3%;
     text-align: center;
     color: hsl(195 25% 25%);
+    animation: slideAppTitleFromLeft .25s ease;
 }
 .app-intro {
     margin-top: 32px;
@@ -50,6 +116,7 @@ body {
     color: hsl(195 25% 25%);
     font-size: 20px;
     line-height: 1.4;
+    animation: slideAppIntroFromRight .3s ease;
 }
 .app-directions {
     line-height: 1.4;
@@ -58,21 +125,14 @@ body {
     text-align: center;
     color: hsl(195 25% 25%);
     font-size: 24px;
+    animation: slideAppDirectionsFromLeft .36s ease;
 }
 .article {
     color: hsl(195 25% 25%);
     margin-left: 10px;
     margin-right: 10px;
     line-height: 1.4;
-    animation: fadeIn 3s ease;
-}
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    animation: fadeInArticle 2s ease;
 }
 .title {
     text-align: center;
@@ -177,6 +237,7 @@ ol li {
     z-index: 100;
     color: hsl(195 25% 35%);
     user-select: none;
+    animation: fadeInQuestions .432s ease;
 }
 
 .question {
