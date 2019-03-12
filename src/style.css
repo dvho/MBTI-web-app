@@ -3,6 +3,7 @@ body {
     font-family: "Times New Roman", Times, serif;
     background-color: hsla(60, 100%, 97%, .3); /*backround-color: Ivory (at .3 opacity)*/
 }
+
 @keyframes slideAppTitleFromLeft {
     0% {
         opacity: 0;
@@ -58,6 +59,15 @@ body {
         opacity: 1;
     }
 }
+@keyframes animate-question {
+    0% {transform: translateX(0px);}
+    21% {transform: translateX(-35px);}
+    28% {transform: translateX(40px);}
+    37% {transform: translateX(-25px);}
+    50% {transform: translateX(12px);}
+    66% {transform: translateX(-6px);}
+    88% {transform: translateX(3px);}
+}
 
 @keyframes slideNicknameFromLeft {
     0% {
@@ -90,7 +100,6 @@ body {
         opacity: 1;
     }
 }
-
 @keyframes fadeInArticle {
     0% {
         opacity: 0;
@@ -99,13 +108,14 @@ body {
         opacity: 1;
     }
 }
+
 .app-title {
     margin-top: -294px;
     margin-left: 3%;
     margin-right: 3%;
     text-align: center;
     color: hsl(195 25% 25%);
-    animation: slideAppTitleFromLeft .25s ease;
+    animation: slideAppTitleFromLeft 1s ease;
 }
 .app-intro {
     margin-top: 32px;
@@ -116,7 +126,7 @@ body {
     color: hsl(195 25% 25%);
     font-size: 20px;
     line-height: 1.4;
-    animation: slideAppIntroFromRight .3s ease;
+    animation: slideAppIntroFromRight 1.2s ease;
 }
 .app-directions {
     line-height: 1.4;
@@ -125,121 +135,15 @@ body {
     text-align: center;
     color: hsl(195 25% 25%);
     font-size: 24px;
-    animation: slideAppDirectionsFromLeft .36s ease;
+    animation: slideAppDirectionsFromLeft 1.44s ease;
 }
-.article {
-    color: hsl(195 25% 25%);
-    margin-left: 10px;
-    margin-right: 10px;
-    line-height: 1.4;
-    animation: fadeInArticle 2s ease;
-}
-.title {
-    text-align: center;
-}
-h2, h3 {
-    margin-top: 30px;
-    margin-bottom: 0px;
-}
-.h3-above-p-or-ol {
-    margin-bottom: -12px;
-}
-p {
-    margin-top: 16px;
-    margin-bottom: 0px;
-}
-ul {
-    margin-top: 4px;
-    margin-bottom: 0px;
-}
-ol li {
-    margin-top: 7px;
-}
-.nickname {
-    font-size: 48px;
-    text-align: center;
-    line-height: 1;
-}
-.preferences-pairs {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    color: hsl(195 25% 35%);
-    font-size: 24px;
-    margin-top: 50px;
-    user-select: none;
-}
-.graph-heading {
-    flex: 1;
-}
-.preferences-graph-container {
-    margin-top: -60px;
-    display: flex;
-    height: 314px;
-    align-items: flex-end;
-    justify-content: space-around;
-    background-color: hsla(60, 100%, 97%, 1);
-    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
-    text-align: center;
-    color: hsl(195 25% 35%);
-    font-size: 12px;
-    user-select: none;
-}
-@media only screen and (max-width: 768px) {
-    .preferences-graph-container {
-        font-size: 10px;
-    }
-}
-@media only screen and (max-width: 620px) {
-    .preferences-graph-container {
-        font-size: 9px;
-    }
-}
-@media only screen and (max-width: 520px) {
-    .preferences-graph-container {
-        font-size: 8px;
-    }
-}
-@media only screen and (max-width: 420px) {
-    .preferences-graph-container {
-        font-size: 7px;
-    }
-}
-@media only screen and (max-width: 320px) {
-    .preferences-graph-container {
-        font-size: 6px;
-    }
-}
-.preferences-graph-container-box {
-    width: 11%;
-}
-.label {
-    padding-bottom: 1px;
-}
-.preference {
-    flex: 1;
-    padding-top: 5px;
-    transition: height 1s ease .5s;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-    box-shadow: 5px 2px 9px 0px rgba(0,0,0,0.75);
-    text-shadow: 0px 0px 12px rgba(255, 255, 240, 1);
-}
-.graph-bar-left {
-    background-color: hsl(359 25% 79%);
-}
-.graph-bar-right {
-    background-color: hsl(195 25% 79%);
-}
-
 .question-block {
     border: 1px solid hsl(195 25% 35%);
     z-index: 100;
     color: hsl(195 25% 35%);
     user-select: none;
-    animation: fadeInQuestions .432s ease;
+    animation: fadeInQuestions 1.728s ease;
 }
-
 .question {
     text-align: center;
     font-size: 24px;
@@ -248,7 +152,6 @@ ol li {
     padding-left: 10px;
     padding-right: 10px;
 }
-
 .answer-container {
     display: flex;
     align-items: stretch;
@@ -381,12 +284,108 @@ button:hover {
     transition: all .15s ease;
 }
 
-@keyframes animate-question {
-    0% {transform: translateX(0px);}
-    21% {transform: translateX(-35px);}
-    28% {transform: translateX(40px);}
-    37% {transform: translateX(-25px);}
-    50% {transform: translateX(12px);}
-    66% {transform: translateX(-6px);}
-    88% {transform: translateX(3px);}
+.article {
+    color: hsl(195 25% 25%);
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 1.4;
+    animation: fadeInArticle 2s ease;
+}
+.title {
+    text-align: center;
+}
+h2, h3 {
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+.h3-above-p-or-ol {
+    margin-bottom: -12px;
+}
+p {
+    margin-top: 16px;
+    margin-bottom: 0px;
+}
+ul {
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+ol li {
+    margin-top: 7px;
+}
+.nickname {
+    font-size: 48px;
+    text-align: center;
+    line-height: 1;
+}
+.preferences-pairs {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    color: hsl(195 25% 35%);
+    font-size: 24px;
+    margin-top: 50px;
+    user-select: none;
+}
+.graph-heading {
+    flex: 1;
+}
+.preferences-graph-container {
+    margin-top: -60px;
+    display: flex;
+    height: 314px;
+    align-items: flex-end;
+    justify-content: space-around;
+    background-color: hsla(60, 100%, 97%, 1);
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.75);
+    text-align: center;
+    color: hsl(195 25% 35%);
+    font-size: 12px;
+    user-select: none;
+}
+@media only screen and (max-width: 768px) {
+    .preferences-graph-container {
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width: 620px) {
+    .preferences-graph-container {
+        font-size: 9px;
+    }
+}
+@media only screen and (max-width: 520px) {
+    .preferences-graph-container {
+        font-size: 8px;
+    }
+}
+@media only screen and (max-width: 420px) {
+    .preferences-graph-container {
+        font-size: 7px;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .preferences-graph-container {
+        font-size: 6px;
+    }
+}
+
+.preferences-graph-container-box {
+    width: 11%;
+}
+.label {
+    padding-bottom: 1px;
+}
+.preference {
+    flex: 1;
+    padding-top: 5px;
+    transition: height 1s ease .5s;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: 5px 2px 9px 0px rgba(0,0,0,0.75);
+    text-shadow: 0px 0px 12px rgba(255, 255, 240, 1);
+}
+.graph-bar-left {
+    background-color: hsl(359 25% 79%);
+}
+.graph-bar-right {
+    background-color: hsl(195 25% 79%);
 }
