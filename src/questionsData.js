@@ -524,7 +524,7 @@ const questionsData = [ //choice initialized at 0 for each index
         category: 'TF',
         question: 'I wish more for myself:',
         answerA: 'Clarity of reason',
-        answerB: 'Strenth of compassion',
+        answerB: 'Strength of compassion',
         choice: 0
     },
     {
