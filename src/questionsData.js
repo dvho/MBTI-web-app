@@ -122,7 +122,7 @@ const questionsData = [ //choice initialized at 0 for each index
     {
         id: 16,
         category: 'SN',
-        question: 'In doing oridinary things I am more likely to:',
+        question: 'In doing ordinary things I am more likely to:',
         answerA: 'Do it the usual way',
         answerB: 'Do it my own way',
         choice: 0
@@ -322,7 +322,7 @@ const questionsData = [ //choice initialized at 0 for each index
     {
         id: 41,
         category: 'JP',
-        question: 'I am more comforable with work that is:',
+        question: 'I am more comfortable with work that is:',
         answerA: 'Contracted',
         answerB: 'Done on a casual basis',
         choice: 0
@@ -340,7 +340,7 @@ const questionsData = [ //choice initialized at 0 for each index
         category: 'EI',
         question: 'I prefer:',
         answerA: 'Many friends with brief contact',
-        answerB: 'A few friends with more lengthy contact',
+        answerB: 'A few friends with lengthier contact',
         choice: 0
     },
     {
@@ -356,7 +356,7 @@ const questionsData = [ //choice initialized at 0 for each index
         category: 'SN',
         question: 'I am more interested in:',
         answerA: 'Production and distribution',
-        answerB: 'Design and researach',
+        answerB: 'Design and research',
         choice: 0
     },
     {
@@ -443,8 +443,8 @@ const questionsData = [ //choice initialized at 0 for each index
         id: 56,
         category: 'JP',
         question: 'In relationships most things should be:',
-        answerA: 'Re-negotiable',
-        answerB: 'Random and circumstancial',
+        answerA: 'Renegotiable',
+        answerB: 'Random and circumstantial',
         choice: 0
     },
     {
